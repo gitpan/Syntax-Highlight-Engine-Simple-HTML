@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use base qw(Syntax::Highlight::Engine::Simple);
 #use version;
-our $VERSION = '0.0.1';
+our $VERSION = '0.02';
 
 ### ----------------------------------------------------------------------------
 ### set syntax
@@ -19,17 +19,17 @@ sub setSyntax {
 			{
 				class => 'quote',
 				regexp => q!(?s)'.*?'!,
-				allowed_container => ['tag'],
+				container => 'tag',
 			},
 			{
 				class => 'wquote',
 				regexp => q!(?s)".*?"!,
-				allowed_container => ['tag'],
+				container => 'tag',
 			},
 			{
 				class => 'number',
 				regexp => '\b\d+\b',
-				allowed_container => ['tag'],
+				container => 'tag',
 			},	
 			{
 				class => 'comment',
@@ -120,8 +120,8 @@ Append syntax by giving a hash.
 	$highlighter->setSyntax(
 	    syntax => {
 	        class => 'quote',
-	        regexp => q@'.*?(?<!¥¥¥¥)'@,
-	        allowed_container => ['comment'],
+	        regexp => "'.*?'",
+	        container => 'comment',
 	    }
 	);
 
